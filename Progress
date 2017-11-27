@@ -1,0 +1,20 @@
+WEBSITE
+	* Administrator
+		- UI Administrator : (70%)
+		- Input data Lokasi wisata : (80%)
+		- Input data harga retribusi masing2 lokasi wisata : (Done)
+		- Create User operator aplikasi retribusi : (Done)
+		- Input Paket perjalanan : (belum)
+		- Data Guide : (belum)
+
+		* Visitor	
+			- UI Visitor : (belum)
+			- Registrasi & data Visitor : (30%)
+			- Pemesanan tiket via web : (Done)
+
+Aplikasi Ticket Retribusi
+	- UI Aplikasi ticket retribusi : (30%)
+	- Login berdasarkan masing2 lokasi wisata : (Done)
+	- Perhitungan Retribusi masing2 tempat wisata : (Done)
+	- Save data penjualan retribusi offline ke server : (Done)
+	- Ambil data pemesanan tiket online : (WIP)(Done)
