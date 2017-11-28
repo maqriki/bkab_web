@@ -144,7 +144,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 	  
 	  // Route::get('/paket/delete-cart',             'Visitor\CartController@deleteItemCart');
 	  Route::get('/checkout',           		 'Visitor\UserController@newCheckout');
-	  // Route::post('/submit-shopping-cart',    		 'Visitor\UserController@submitCart');
+	  Route::post('/submit-cart',    		 'Visitor\UserController@newSubmitCart');
 
 	// Profile Visitor
 	  Route::get('user/profile', 'Visitor\UserController@userProfile')->name('user-profile');

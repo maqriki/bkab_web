@@ -25,7 +25,7 @@
 @section('content')
 
 <div class="container">
-	<form class="form-horizontal" method="POST" action="{{ url('submit-shopping-cart' ) }}">
+	<form class="form-horizontal" method="POST" action="{{ url('/submit-cart' ) }}">
 		{{ csrf_field() }}
 		<div class="row">
 
@@ -99,8 +99,8 @@
 				  </div>
 				  <div class="panel-footer clearfix">
 				  	<a href="{{ url('/visit') }}" class="btn btn-sm btn-info pull-left">Kembali Belanja</a>
-				  	<a href="{{ url('/ticketing/delete-cart') }}" style="margin-left: 15px" class="btn btn-sm btn-warning pull-right">Delete Cart</a>
-				  	<button type="submit" href="{{ url('/ticketing/checkout') }}" class="btn btn-sm btn-success pull-right">Check Out</button>
+				  	<a href="{{ url('/remove-cart') }}" style="margin-left: 15px" class="btn btn-sm btn-warning pull-right">Delete Cart</a>
+				  	<button type="submit" class="btn btn-sm btn-success pull-right">Check Out</button>
 				  </div>
 				</div>
 			</div>
@@ -187,8 +187,6 @@
 					@endif
 				</div>
 			</div>
-
-			
 		</div>
 	</form>
 </div>

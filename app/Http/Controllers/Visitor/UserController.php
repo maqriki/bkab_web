@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Ticketing\Cart;
 
+use App\Models\Order\UserOrder;
+
 use App\Models\Cart\MainCart;
 use App\Models\Cart\PaketCart;
 use App\Models\Cart\TicketingCart;
@@ -81,6 +83,42 @@ class UserController extends Controller
             ->with('totalQtyTiket', $tiket->totalQty)
             ->with('totalPriceTiket', $tiket->totalPrice)
             ->with('totalPriceTiket', $paket->ttlPaketPrice);
+  }
+
+  public function newSubmitCart(Request $request)
+  {
+    $idCurrent=UserOrder::orderBy('id', 'DESC')->first();
+    $idNow = $idCurrent->id+1;
+    $idOrderNow='ORD'.$idNow;
+
+
+    $oldCart= Session::get('cart');
+    $cart= new MainCart($oldCart);
+
+    $oldCartTiket= Session::get('tiket');
+    $tiket= new TicketingCart($oldCartTiket);
+
+    $oldCartPaket= Session::get('paket');
+    $paket= new PaketCart($oldCartPaket);
+
+    // $resume=['cart'=>$cart, 'tiket'=>$tiket, 'paket'=>$paket];
+    // dd($resume);
+
+    $order = new UserOrder();
+    $order->user_id=Auth::user()->id;
+    $order->order_id=$idOrderNow;
+    $order->ttl_item_all=$cart->totalQty;
+    $order->ttl_tiket_item=$cart->totalTicketing;
+    $order->ttl_tiket_person=$tiket->totalTicket;
+    $order->ttl_tiket_tagihan=$tiket->totalPrice;
+    $order->ttl_paket_item=$cart->totalPaket;
+    $order->ttl_paket_person=$paket->ttlPaketPerson;
+    $order->ttl_paket_tagihan=$paket->ttlPaketPrice;
+    $order->ttl_tagihan=$cart->totalPrice;
+    $order->payment_method=$request['paymentMethod'];
+    $order->save();
+
+
   }
 
   public function submitCart(Request $request)
