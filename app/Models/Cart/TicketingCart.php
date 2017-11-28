@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Ticketing;
+namespace App\Models\Cart;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class TicketingCart extends Model
 {
-	public $items = null;
+  public $items = null;
 	public $totalQty = 0;
 	public $totalPrice = 0;
 	public $totalTicket = 0;
@@ -34,5 +34,4 @@ class Cart extends Model
 		$this->totalPrice += $tPrice;
 		$this->totalTicket += $tTicket;
 	}
-
 }

@@ -325,7 +325,7 @@ class AllAdminController extends Controller
         return redirect()->to('a/admin/product');
       }
 
-    // Product Special Event
+    // Product Paket Wisata
       public function pwIndex()
       {if(Auth::user()->user_role!=0){return redirect()->to('/404');}
         // $paket = DB::table('paket_wisatas')

@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('/min/dist/css/helper.min.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('/min/bower_components/font-awesome/css/font-awesome.min.css')}}">
 
@@ -83,8 +84,9 @@
                 </ul>
               </li> -->
             @endguest
-            <li><a href="{{ url('/ticketing/shopping-cart') }}">Cart 
+            <li><a href="{{ url('/shopping-cart') }}">Cart 
             <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a></li>
+            <li><a href="{{url('/remove-session')}}"> Remove Session</a></li>
           </ul>
         </div>
       </div>

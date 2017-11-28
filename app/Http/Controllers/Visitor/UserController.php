@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Ticketing\Cart;
 
+use App\Models\Cart\MainCart;
+use App\Models\Cart\PaketCart;
+use App\Models\Cart\TicketingCart;
+
 use App\Models\Ticketing\Ticket;
 use App\Models\Ticketing\TicketOrdered;
 use App\Models\Ticketing\TicketOrder;
@@ -51,6 +55,32 @@ class UserController extends Controller
               ->with('totalQty', $cart->totalQty)
               ->with('totalTicket', $cart->totalTicket)
               ->with('totalPrice', $cart->totalPrice);
+  }
+
+  public function newCheckout()
+  {
+    if (!Session::has('cart')) {
+      return view('visitor.cart.empty-cart');
+    }
+
+    $oldCart= Session::get('cart');
+    $cart= new MainCart($oldCart);
+
+    $oldCartTiket= Session::get('tiket');
+    $tiket= new TicketingCart($oldCartTiket);
+
+    $oldCartPaket= Session::get('paket');
+    $paket= new PaketCart($oldCartPaket);
+    // $resume=['cart'=>$cart, 'tiket'=>$tiket, 'paket'=>$paket];
+    // dd($resume);
+
+    return view('visitor.cart.new-checkout')
+            ->with('cart', $cart->resumeCart)
+            ->with('tiket', $tiket->items)
+            ->with('paket', $paket->pakets)
+            ->with('totalQtyTiket', $tiket->totalQty)
+            ->with('totalPriceTiket', $tiket->totalPrice)
+            ->with('totalPriceTiket', $paket->ttlPaketPrice);
   }
 
   public function submitCart(Request $request)

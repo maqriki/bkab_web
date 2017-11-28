@@ -122,14 +122,29 @@ Route::get('/home', 'HomeController@index')->name('home');
 |	Visitor
 |-----------------------------------------------------------------------------
 */
+	Route::get('/remove-session', 'Visitor\CartController@removeS');
+	Route::get('/remove-cart', 'Visitor\CartController@removeS');
+	// Lokasi Wisata
 	Route::get('/visit', 'Visitor\VisitorController@index');
 	Route::get('/lokasi/view/{slug}', 'Visitor\VisitorController@viewLok');
-	// Cart Ticketing
-		Route::get('/ticketing/add-to-cart/{id}/{cp}',   'Visitor\CartTicketing@addToCart');
-	  Route::get('/ticketing/shopping-cart',           'Visitor\CartTicketing@shoppingCart');
-	  Route::get('/ticketing/delete-cart',             'Visitor\CartTicketing@deleteItemCart');
-	  Route::get('/ticketing/checkout',           		 'Visitor\UserController@checkout');
-	  Route::post('/submit-shopping-cart',    				 'Visitor\UserController@submitCart');
+	
+	// Cart ==================================================================================
+		Route::get('/ticketing/add-to-cart/{id}/{cp}',   'Visitor\CartController@ticketAddToCart');// Cart Ticketing
+		Route::get('/paket-wisata/view/{slug}', 'Visitor\VisitorController@viewPaket');// Paket Wisata
+		Route::get('/shopping-cart', 'Visitor\CartController@shoppingCart');
+
+	  // Route::get('/ticketing/shopping-cart',           'Visitor\CartController@shoppingCart');
+	  // Route::get('/ticketing/delete-cart',             'Visitor\CartController@deleteItemCart');
+	  // Route::get('/ticketing/checkout',           		 'Visitor\UserController@checkout');
+	  // Route::post('/submit-shopping-cart',    				 'Visitor\UserController@submitCart');
+	
+	// Cart Paket
+		Route::get('/paket/add-to-cart/{id}/{cp}',   'Visitor\CartController@paketAddToCart');
+	  // Route::get('/paket/shopping-cart',           'Visitor\CartController@paketShoppingCart');
+	  
+	  // Route::get('/paket/delete-cart',             'Visitor\CartController@deleteItemCart');
+	  Route::get('/checkout',           		 'Visitor\UserController@newCheckout');
+	  // Route::post('/submit-shopping-cart',    		 'Visitor\UserController@submitCart');
 
 	// Profile Visitor
 	  Route::get('user/profile', 'Visitor\UserController@userProfile')->name('user-profile');
