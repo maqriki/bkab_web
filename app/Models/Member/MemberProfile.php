@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Order;
+namespace App\Models\Member;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserOrderTicket extends Model
+class MemberProfile extends Model
 {
-  protected $table = 'user_order_tickets';
+  protected $table = 'member_profiles';
   protected $primarykey = 'id';
   public $timestamp=true;
 }

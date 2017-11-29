@@ -106,7 +106,7 @@ class CartController extends Controller
     $oldCartPaket= Session::get('paket');
     $paket= new PaketCart($oldCartPaket);
     $resume=['cart'=>$cart, 'tiket'=>$tiket, 'paket'=>$paket];
-    dd($resume);
+    // dd($resume);
 
     return view('visitor.cart.new-shopping-cart')
     				->with('cart', $cart->resumeCart)

@@ -749,6 +749,11 @@ class AllAdminController extends Controller
         $product->lokasi_status=1;
         $product->save();
 
+        $ticket= new TicketingHarga();
+        $ticket->lokasi_id=$unique;
+        $ticket->nama_lokasi=$request['name'];
+        $ticket->save();
+
         # schedule 
         for ($i=0; $i < 100; $i++) { 
           if (!empty($request['sch-des'.$i]) && !empty($request['sch-time'.$i])) {
@@ -904,6 +909,11 @@ class AllAdminController extends Controller
         $product->lokasi_slug=$newSlug;
         $product->lokasi_status=1;
         $product->save();
+
+        $ticket= new TicketingHarga();
+        $ticket->lokasi_id=$unique;
+        $ticket->nama_lokasi=$request['name'];
+        $ticket->save();
 
         # schedule 
         for ($i=0; $i < 100; $i++) { 

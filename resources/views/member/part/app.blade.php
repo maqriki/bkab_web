@@ -8,10 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title> Pariwisata Kota Batang</title>
+    <title>@yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('/min/dist/css/helper.min.css')}}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('/min/bower_components/font-awesome/css/font-awesome.min.css')}}">
+
+    @yield('custom-style')
 </head>
 <body>
   <div id="app">
@@ -29,24 +34,50 @@
 
           <!-- Branding Image -->
           <a class="navbar-brand" href="{{ url('/') }}">
-              Pariwisata Kota Batang
+              Pariwisata Batang
           </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
           <!-- Left Side Of Navbar -->
           <ul class="nav navbar-nav">
-              &nbsp;
+            <li><a href="{{ url('/wisata') }}">Wisata</a></li>
+            <li><a href="{{ url('/event') }}">Event</a></li>
+            <li><a href="{{ url('/paket-wisata') }}">Paket Wisata</a></li>
           </ul>
 
           <!-- Right Side Of Navbar -->
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url('/shopping-cart') }}">Cart 
+            <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a></li>
             <!-- Authentication Links -->
             @guest
               <li><a href="{{ route('login') }}">Login</a></li>
               <li><a href="{{ route('register') }}">Register</a></li>
             @else
-              <li class="dropdown">
+              @if(Auth::user()->user_role==9)
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">User
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{url('/member/profile')}}">Profile</a></li>
+                    <li><a href="{{url('/member/account')}}">Account</a></li>
+                    <li><a href="{{url('/member/order')}}">Order History</a></li>
+                    <li>
+                      <a href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                          Logout
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          {{ csrf_field() }}
+                      </form>
+                    </li>
+                  </ul>
+                </li>                
+              @endif
+              <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
@@ -64,7 +95,7 @@
                     </form>
                   </li>
                 </ul>
-              </li>
+              </li> -->
             @endguest
           </ul>
         </div>
@@ -76,5 +107,7 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>
+
+    @yield('custom-script')
 </body>
 </html>

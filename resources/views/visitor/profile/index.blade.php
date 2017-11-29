@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="row">
 				<div class="col-lg-5">
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 					  <div class="panel-heading"><b>Profile</b></div>
 					  <div class="panel-body">
 					  	<table class="table">
@@ -42,16 +42,17 @@
 					  </div>
 					</div>
 				</div>
-				<div class="col-lg-7">
-					<div class="panel panel-default">
+				<div class="col-lg-12">
+					<div class="panel panel-success">
 					  <div class="panel-heading"><b>Order History</b></div>
 					  <div class="panel-body">
 					  	<table class="table">
 					  		<thead>
 					  			<tr>
 					  				<th>Invoice</th>
+						  			<th>Order Paket Wisata</th>
+						  			<th>Order Tiket</th>
 						  			<th>Total Tagihan</th>
-						  			<th>Total Tiket</th>
 						  			<th>Status Pembayaran</th>
 						  			<th></th>
 					  			</tr>						  			
@@ -59,9 +60,10 @@
 					  		<tbody>
 					  			@foreach($order as $ord)
 					  				<tr>
-					  					<td>#{{$ord->order_id}}</td>
-					  					<td>Rp.{{ number_format($ord->total_payment, 2) }}</td>
-					  					<td>{{$ord->total_ticket}}</td>
+					  					<td><b>#{{$ord->order_id}}</b></td>
+					  					<td>{{$ord->ttl_tiket_item}} Item</td>
+					  					<td>{{$ord->ttl_paket_item}} Item</td>
+					  					<td><b>Rp.</b> {{ number_format($ord->ttl_tagihan, 0) }}</td>
 					  					<td>
 					  						@if($ord->status_payment==0)
 					  							<label class="label label-danger">Belum Dibayar</label>
